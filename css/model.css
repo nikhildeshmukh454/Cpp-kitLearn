@@ -1,0 +1,129 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Set body background to black */
+    color: #fff; /* Set text color to white for better readability */
+}
+
+
+.nav {
+    background-color: #000;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.nav h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #00ca6c;
+}
+
+.nav h1 a{
+    color: #00ca6c;
+}
+
+.modelType {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.modelType a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.sub-Model-nav {
+
+    border-color: #fff;
+    background-color: #00ca6c; /* Set sub-model navigation background to black */
+    display: flex;
+    justify-content: space-around;
+    color: #000;
+}
+
+.sub-Model-nav .subModelType {
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.sub-Model-nav .subModelType:hover {
+    background-color: #ffffff; /* Darker shade for hover effect */
+}
+
+h2{
+    align-items: center;
+}
+
+/* Main content container */
+.main-content {
+    display: flex;
+    padding: 20px;
+}
+
+/* Vertical navigation for sub-model types */
+
+/* Sub-model info container */
+.sub-Model-info {
+    display: flex;
+    flex: 1;
+    margin-left: 20px; /* Add margin to the left of the sub-model info */
+}
+
+
+
+.model-code,
+.sub-Model-documentation {
+    flex: 1; /* Take up equal space */
+    padding: 20px;
+    background-color: #000; /* Set background color to black */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Light shadow for better visibility */
+    color: #fff; /* Set text color to white */
+    margin-right: 20px; /* Margin between code and documentation */
+}
+
+.model-code pre,
+.sub-Model-documentation p {
+    background-color: #333; /* Darker shade for preformatted text background */
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+    color: #fff; /* Set text color to white */
+}
+
+.model-code{
+    font-size: 0.75rem;
+}
+
+.modelType a:active {
+    background-color: #777; /* Change to a darker shade on click */
+    transition-delay: 0.1s; /* Add slight delay for smoother transition */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .sub-Model-nav {
+        position: static; /* Reset position for smaller screens */
+        width: auto; /* Reset width */
+        margin-top: 20px; /* Add margin */
+    }
+
+    .model-code,
+    .sub-Model-documentation {
+        position: static; /* Reset position for smaller screens */
+        width: auto; /* Reset width */
+        margin: 0 0 20px 0; /* Add margin */
+    }
+}
