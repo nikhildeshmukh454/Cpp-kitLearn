@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cpp-KitLearn</title>
+    <link rel="stylesheet" href="/Cpp-KitLearn/Style/model.css">
+</head>
+<body>
+
+
+    <div class="nav">
+        <h1><a href="/Cpp-KitLearn/index.html">Cpp-KitLearn</a></h1>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/classification.html">Classification</a></div>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/clustering.html">Clustering</a></div>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/numpy.html">NumPy</a></div>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/pandas.html">Pandas</a></div>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/regression.html">Regression</a></div>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/deep_learning.html">Deep Learning</a></div>
+        <div class="modelType"><a href="/Cpp-KitLearn/models/error_calculation.html">Error Calculation</a></div>
+    </div>
+    
+
+    <div class="sub-Model-nav">
+        <div class="subModelType">Sub-Model 1</div>
+        <div class="subModelType">Sub-Model 2</div>
+        <div class="subModelType">Sub-Model 3</div>
+        <!-- Add more sub-model types as needed -->
+    </div>
+
+  
+       
+<h2 class="MODEL_NAME"> MODEL NAME </h2>
+        <div class="sub-Model-info">
+
+
+            <div class="model-code">
+               
+                <pre>
+                    <code>
+#include &lt;iostream&gt;
+#include &lt;bits/stdc++.h&gt;
+#include &lt;numeric&gt;
+#include &lt;random&gt;
+using namespace std;
+
+class NumPy
+{
+public:
+    //-------------- Array Creation and Manipulation --------------//
+    vector&lt;vector&lt;int&gt;&gt; zeros(int n = 1, int m = 1)
+    {
+        vector&lt;vector&lt;int&gt;&gt; Zero(n, vector&lt;int&gt;(m, 0));
+        return Zero;
+    }
+
+    vector&lt;vector&lt;int&gt;&gt; ones(int n = 1, int m = 1)
+    {
+        vector&lt;vector&lt;int&gt;&gt; Zero(n, vector&lt;int&gt;(m, 1));
+        return Zero;
+    }
+
+    vector&lt;int&gt; arange(int s, int e)
+    {
+        vector&lt;int&gt; Arange(e - s + 1);
+        for (int index = 0; index &lt;= e - s; index++)
+        {
+            Arange[index] = index + s;
+        }
+
+        return Arange;
+    }
+
+    vector&lt;float&gt; linspace(int start, int stop, int num)
+    {
+        vector&lt;float&gt; spaced;
+        if (num == 1)
+        {
+            spaced.push_back((stop + start) / 2.0f);
+            return spaced;
+        }
+
+        float step = (stop - start) / static_cast&lt;float&gt;(num - 1);
+
+        for (int i = 0; i &lt; num; ++i)
+        {
+            spaced.push_back(start + i * step);
+        }
+
+        return spaced;
+    }
+
+    vector&lt;vector&lt;int&gt;&gt; reshape(int x, int y, vector&lt;int&gt; &Array)
+    {
+        vector&lt;vector&lt;int&gt;&gt; RArray(x, vector&lt;int&gt;(y));
+        if (x * y != Array.size())
+        {
+            cout &lt;&lt; "Error: Given Reshape parameters are invalid\n";
+            return RArray;
+        }
+        else
+        {
+            int k = 0;
+            for (int i = 0; i &lt; x; i++)
+            {
+                for (int j = 0; j &lt; y; j++)
+                {
+                    RArray[i][j] = Array[k];
+                    k++;
+                }
+            }
+            return RArray;
+        }
+    }
+
+    vector&lt;int&gt; flatten(vector&lt;vector&lt;int&gt;&gt; &Array)
+    {
+        vector&lt;int&gt; FArray;
+        for (int i = 0; i &lt; Array.size(); i++)
+        {
+            for (int j = 0; j &lt; Array[0].size(); j++)
+            {
+                FArray.push_back(Array[i][j]);
+            }
+        }
+        return FArray;
+    }
+
+    //-------------- Mathematical Operations --------------//
+    vector&lt;float&gt; add(const vector&lt;float&gt; &vec1, const vector&lt;float&gt; &vec2)
+    {
+        if (vec1.size() != vec2.size())
+        {
+            cout &lt;&lt; "Error: Vectors must be of the same length" &lt;&lt; endl;
+            return {};
+        }
+
+        vector&lt;float&gt; result(vec1.size());
+        for (size_t i = 0; i &lt; vec1.size(); ++i)
+        {
+            result[i] = vec1[i] + vec2[i];
+        }
+
+        return result;
+    }
+
+    vector&lt;float&gt; subtract(const vector&lt;float&gt; &vec1, const vector&lt;float&gt; &vec2)
+    {
+        if (vec1.size() != vec2.size())
+        {
+            cout &lt;&lt; "Error: Vectors must be of the same length" &lt;&lt; endl;
+            return {};
+        }
+
+        vector&lt;float&gt; result(vec1.size());
+        for (size_t i = 0; i &lt; vec1.size(); ++i)
+        {
+            result[i] = vec1[i] - vec2[i];
+        }
+
+        return result;
+    }
+
+    vector&lt;float&gt; multiply(const vector&lt;float&gt; &vec1, const vector&lt;float&gt; &vec2)
+    {
+        if (vec1.size() != vec2.size())
+        {
+            cout &lt;&lt; "Error: Vectors must be of the same length" &lt;&lt; endl;
+            return {};
+        }
+
+        vector&lt;float&gt; result(vec1.size());
+        for (size_t i = 0; i &lt; vec1.size(); ++i)
+        {
+            result[i] = vec1[i] * vec2[i];
+        }
+
+        return result;
+    }
+
+    vector&lt;float&gt; divide(const vector&lt;float&gt; &vec1, const vector&lt;float&gt; &vec2)
+    {
+        if (vec1.size() != vec2.size())
+        {
+            cout &lt;&lt; "Error: Vectors must be of the same length" &lt;&lt; endl;
+            return {};
+        }
+
+        vector&lt;float&gt; result(vec1.size());
+        for (size_t i = 0; i &lt; vec1.size(); ++i)
+        {
+            if (vec2[i] == 0)
+            {
+                cout &lt;&lt; "Error: Division by zero at index " &lt;&lt; i &lt;&lt; endl;
+                return {};
+            }
+            result[i] = vec1[i] / vec2[i];
+        }
+
+        return result;
+    }
+
+    float dot_product(const vector&lt;float&gt; &vec1, const vector&lt;float&gt; &vec2)
+    {
+        if (vec1.size() != vec2.size())
+        {
+            cout &lt;&lt; "Error: Vectors must be of the same length" &lt;&lt; endl;
+            return 0;
+        }
+        float dot_product = 0;
+        for (int i = 0; i &lt; vec1.size(); ++i)
+        {
+            dot_product += vec1[i] * vec2[i];
+        }
+        return dot_product;
+    }
+
+    vector&lt;vector&lt;float&gt;&gt; matmul(const vector&lt;vector&lt;float&gt;&gt; &mat1, const vector&lt;vector&lt;float&gt;&gt; &mat2)
+    {
+        int rows1 = mat1.size();
+        int cols1 = mat1[0].size();
+        int rows2 = mat2.size();
+        int cols2 = mat2[0].size();
+
+        if (cols1 != rows2)
+        {
+            cout &lt;&lt; "Error: Matrices cannot be multiplied" &lt;&lt; endl;
+            return {};
+        }
+
+        vector&lt;vector&lt;float&gt;&gt; result(rows1, vector&lt;float&gt;(cols2, 0));
+
+        for (int i = 0; i &lt; rows1; ++i)
+        {
+            for (int j = 0; j &lt; cols2; ++j)
+            {
+                for (int k = 0; k &lt; cols1; ++k)
+                {
+                    result[i][j] += mat1[i][k] * mat2[k][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    float sum(const vector&lt;float&gt; &vec)
+    {
+        return accumulate(vec.begin(), vec.end(), 0.0f);
+    }
+
+    float mean(const vector&lt;float&gt; &vec)
+    {
+        if (vec.empty())
+        {
+            cout &lt;&lt; "Error: Vector is empty" &lt;&lt; endl;
+            return 0;
+        }
+        return sum(vec) / vec.size();
+    }
+
+    float standardDeviation(const vector&lt;float&gt; &vec)
+    {
+        if (vec.empty())
+        {
+            cout &lt;&lt; "Error: Vector is empty" &lt;&lt; endl;
+            return -1.0;
+        }
+
+        float vecMean = mean(vec);
+        float sum = 0;
+
+        for (auto i : vec)
+        {
+            sum += abs(i - vecMean);
+        }
+
+        sum /= vec.size();
+
+        return sqrt(sum);
+    }
+
+    int min(const vector&lt;int&gt; &vec)
+    {
+        int min_val = numeric_limits&lt;int&gt;::max();
+
+        if (vec.empty())
+        {
+            cout &lt;&lt; "Error: Vector is empty" &lt;&lt; endl;
+            return min_val;
+        }
+
+        for (auto num : vec)
+        {
+            if (num &lt; min_val)
+            {
+                min_val = num;
+            }
+        }
+
+        return min_val;
+    }
+
+    int max(const vector&lt;int&gt; &vec)
+    {
+        int max_val = numeric_limits&lt;int&gt;::min();
+
+        if (vec.empty())
+        {
+            cout &lt;&lt; "Error: Vector is empty" &lt;&lt; endl;
+            return max_val;
+        }
+
+        for (auto num : vec)
+        {
+            if (num &gt; max_val)
+            {
+                max_val = num;
+            }
+        }
+
+        return max_val;
+    }
+
+    //-------------- Linear Algebra --------------//
+
+    vector&lt;vector&lt;float&gt;&gt; inverse(vector&lt;vector&lt;int&gt;&gt; Eqn)
+    {
+        int n = Eqn.size();
+        if (n != Eqn[0].size())
+        {
+            return vector&lt;vector&lt;float&gt;&gt;();
+        }
+
+        vector&lt;vector&lt;float&gt;&gt; Inv(n, vector&lt;float&gt;(n, 0.0));
+        for (int i = 0; i &lt; n; i++)
+        {
+            Inv[i][i] = 1;
+        }
+
+        vector&lt;vector&lt;float&gt;&gt; A(n, vector&lt;float&gt;(n, 0.0));
+        for (int i = 0; i &lt; n; i++)
+        {
+            for (int j = 0; j &lt; n; j++)
+            {
+                A[i][j] = Eqn[i][j];
+            }
+        }
+
+        for (int i = 0; i &lt; n; i++)
+        {
+            float diag = A[i][i];
+            for (int j = 0; j &lt; n; j++)
+            {
+                A[i][j] /= diag;
+                Inv[i][j] /= diag;
+            }
+
+            for (int row = 0; row &lt; n; row++)
+            {
+                if (row != i)
+                {
+                    float factor = A[row][i];
+                    for (int col = 0; col &lt; n; col++)
+                    {
+                        A[row][col] -= A[i][col] * factor;
+                        Inv[row][col] -= Inv[i][col] * factor;
+                    }
+                }
+            }
+        }
+
+        return Inv;
+    }
+
+    //-------------- Random Number Generation --------------//
+
+    vector&lt;int&gt; generateRandomIntegers(int n, int s, int e)
+    {
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution&lt;&gt; dis(s, e);
+
+        vector&lt;int&gt; vec(n);
+        for (int &num : vec)
+        {
+            num = dis(gen);
+        }
+
+        return vec;
+    }
+
+    void shuffleArray(vector&lt;int&gt; &vec)
+    {
+        random_device rd;
+        mt19937 gen(rd());
+        shuffle(vec.begin(), vec.end(), gen);
+    }
+
+    //-------------- Utility Functions --------------//
+
+    vector&lt;int&gt; replaceIfGreaterThan(vector&lt;int&gt; &vec, int s, int num)
+    {
+        for (int &elem : vec)
+        {
+            if (elem &gt; s)
+            {
+                elem = num;
+            }
+        }
+        return vec;
+    }
+
+    vector&lt;int&gt; findUniqueElements(const vector&lt;int&gt; &vec)
+    {
+        set&lt;int&gt; uniqueSet(vec.begin(), vec.end());
+        return vector&lt;int&gt;(uniqueSet.begin(), uniqueSet.end());
+    }
+
+    vector&lt;int&gt; concatenateArrays(const vector&lt;int&gt; &array1, const vector&lt;int&gt; &array2)
+    {
+        vector&lt;int&gt; concatenatedArray = array1;
+        concatenatedArray.insert(concatenatedArray.end(), array2.begin(), array2.end());
+        return concatenatedArray;
+    }
+};
+                    </code>
+                </pre>
+            </div>
+
+
+            <div class="sub-Model-documentation">
+                <h2>Documentation</h2>
+                
+                    <h4>
+                        Array Creation and Manipulation
+                </h4>
+
+                
+<p>
+    zeros(int n = 1, int m = 1).                
+    Creates a 2D vector filled with zeros.
+    Data Structure: 2D vector.
+    Algorithm: Initializes a vector of vectors with specified dimensions and fills it with zeros.
+    ones(int n = 1, int m = 1)
+</p>
+                   
+     
+      <h4>linspace(int start, int stop, int num)</h4>
+      <p>
+          Creates a vector with num equally spaced values from start to stop.
+          Data Structure: Vector.
+          Algorithm: Calculates the step size and uses a for loop to fill the vector with spaced values.
+          reshape(int x, int y, vector<int> &Array)
+      </p>
+      
+      <h4>reshape(int x, int y, vector<int> &Array)</h4>
+      <p>
+          Reshapes a 1D vector into a 2D vector of size x by y.
+          Data Structure: 2D vector.
+          Algorithm: Checks if the total number of elements matches the product of x and y, then uses nested loops to fill the 2D vector.
+          flatten(vector<vector<int>> &Array)
+      </p>
+      
+      <h4>flatten(vector<vector<int>> &Array)</h4>
+      <p>
+          Flattens a 2D vector into a 1D vector.
+          Data Structure: Vector.
+          Algorithm: Uses nested loops to iterate over the 2D vector and append elements to the 1D vector.
+          Mathematical Operations
+      </p>
+      
+      <h4>add(const vector<float> &vec1, const vector<float> &vec2)</h4>
+      <p>
+          Adds two vectors element-wise.
+          Data Structure: Vector.
+          Algorithm: Checks if vectors are of the same length, then uses a for loop to perform element-wise addition.
+          subtract(const vector<float> &vec1, const vector<float> &vec2)
+      </p>
+      
+      <h4>subtract(const vector<float> &vec1, const vector<float> &vec2)</h4>
+      <p>
+          Subtracts two vectors element-wise.
+          Data Structure: Vector.
+          Algorithm: Checks if vectors are of the same length, then uses a for loop to perform element-wise subtraction.
+          multiply(const vector<float> &vec1, const vector<float> &vec2)
+      </p>
+      
+      <h4>multiply(const vector<float> &vec1, const vector<float> &vec2)</h4>
+      <p>
+          Multiplies two vectors element-wise.
+          Data Structure: Vector.
+          Algorithm: Checks if vectors are of the same length, then uses a for loop to perform element-wise multiplication.
+          divide(const vector<float> &vec1, const vector<float> &vec2)
+      </p>
+      
+      <h4>divide(const vector<float> &vec1, const vector<float> &vec2)</h4>
+      <p>
+          Divides two vectors element-wise.
+          Data Structure: Vector.
+          Algorithm: Checks if vectors are of the same length and avoids division by zero, then uses a for loop to perform element-wise division.
+          dot_product(const vector<float> &vec1, const vector<float> &vec2)
+      </p>
+      
+      <h4>dot_product(const vector<float> &vec1, const vector<float> &vec2)</h4>
+      <p>
+          Computes the dot product of two vectors.
+          Data Structure: Vector.
+          Algorithm: Checks if vectors are of the same length, then uses a for loop to calculate the dot product.
+          matmul(const vector<vector<float>> &mat1, const vector<vector<float>> &mat2)
+      </p>
+      
+      <h4>matmul(const vector<vector<float>> &mat1, const vector<vector<float>> &mat2)</h4>
+      <p>
+          Multiplies two matrices.
+          Data Structure: 2D vector.
+          Algorithm: Checks if matrix dimensions are compatible for multiplication, then uses nested loops to perform matrix multiplication.
+          sum(const vector<float> &vec)
+      </p>
+      
+      <h4>sum(const vector<float> &vec)</h4>
+      <p>
+          Computes the sum of elements in a vector.
+          Data Structure: Vector.
+          Algorithm: Uses the accumulate function to calculate the sum.
+          mean(const vector<float> &vec)
+      </p>
+      
+      <h4>mean(const vector<float> &vec)</h4>
+      <p>
+          Computes the mean of elements in a vector.
+          Data Structure: Vector.
+          Algorithm: Uses the sum function and divides by the vector's size.
+          standardDeviation(const vector<float> &vec)
+      </p>
+      
+      <h4>standardDeviation(const vector<float> &vec)</h4>
+      <p>
+          Computes the standard deviation of elements in a vector.
+          Data Structure: Vector.
+          Algorithm: Uses the mean function to find the mean, then calculates the deviation and standard deviation.
+          min(const vector<int> &vec)
+      </p>
+      
+      <h4>min(const vector<int> &vec)</h4>
+      <p>
+          Finds the minimum element in a vector.
+          Data Structure: Vector.
+          Algorithm: Uses a for loop to iterate over the vector and find the minimum value.
+          max(const vector<int> &vec)
+      </p>
+      
+      <h4>max(const vector<int> &vec)</h4>
+      <p>
+          Finds the maximum element in a vector.
+          Data Structure: Vector.
+          Algorithm: Uses a for loop to iterate over the vector and find the maximum value.
+          Linear Algebra
+      </p>
+      
+      <h4>inverse(vector<vector<int>> Eqn)</h4>
+      <p>
+          Computes the inverse of a matrix.
+          Data Structure: 2D vector.
+          Algorithm: Uses Gaussian elimination to find the inverse of the matrix.
+          Random Number Generation
+      </p>
+      
+      <h4>generateRandomIntegers(int n, int s, int e)</h4>
+      <p>
+          Generates a vector of n random integers between s and e.
+          Data Structure: Vector.
+          Algorithm: Uses the C++ standard library's random number generation facilities.
+          shuffleArray(vector<int> &vec)
+      </p>
+      
+      <h4>shuffleArray(vector<int> &vec)</h4>
+      <p>
+          Shuffles the elements of a vector.
+          Data Structure: Vector.
+          Algorithm: Uses the C++ standard library's shuffle function.
+          Utility Functions
+      </p>
+      
+      <h4>replaceIfGreaterThan(vector<int> &vec, int s, int num)</h4>
+      <p>
+          Replaces elements in a vector that are greater than s with num.
+          Data Structure: Vector.
+          Algorithm: Uses a for loop to iterate over the vector and replace elements.
+          findUniqueElements(const vector<int> &vec)
+      </p>
+      
+      <h4>findUniqueElements(const vector<int> &vec)</h4>
+      <p>
+          Finds unique elements in a vector.
+          Data Structure: Set, Vector.
+          Algorithm: Uses a set to filter unique elements and then converts it back to a vector.
+          concatenateArrays(const vector<int> &array1, const vector<int> &array2)
+      </p>
+      
+      <h4>concatenateArrays(const vector<int> &array1, const vector<int> &array2)</h4>
+      <p>
+          Concatenates two vectors.
+          Data Structure: Vector.
+          Algorithm: Uses the insert function to append elements of the second vector to the first vector.
+          Conclusion
+          The NumPy class implements a range of functionalities using fundamental data structures and algorithms in C++. By leveraging vectors, sets, and standard library functions, it provides a versatile toolkit for array manipulation, mathematical operations, and more. This implementation demonstrates a practical approach to handling numerical data and performing common operations in a C++ environment.
+      </p>
+             
+                
+                    
+            </div>
+        </div>
+
+    
+</body>
+</html>
